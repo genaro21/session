@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title User
+        link(rel="stylesheet", href="/css/styles.css")
+    body 
+    h1 Users
+    if user && user.admin 
+        each u in userList 
+            form(action=`/api/eliminar/${u.id}`, method="post")
+                button(type="submit")= u.username                
+            //La linea de arriba es por parámetros y la de abajo es por body
+            //- form(action=`/api/eliminar`, method="post")
+            //-     input(name="id" value=u.id hidden)
+            //-     button(type="submit")= u.username
+    else if user
+        p= user.username 
